@@ -5,7 +5,18 @@ We are a team of web3 data scientists aiming at preventing sybil attacks. Before
 
 # Deliverables
 ## Our Tech Report
-We strongly suggest you to download the $\color{green}{antisybil-V5.pptx} $, our comprehensive 43-page tech report. The ppt contains our thinking, logic, methodology, algorithms and reasoning on a bunch of cases. We propose and develop four approaches, namely (1) bulk transfers pattern mining, (2) bulk donations pattern mining, (3) sequential behavior pattern mining and (4) asset-transfer graph mining for slaying sybil. These approaches form a systematic algorithmic LEGO and totally find $\color{green}{16,994}$ High Risk Sybils. Besides, we make our first attempt to detect $\color{green}{grant}$ $\color{green}{fraud}$ and find one case. 
+We strongly suggest you to download the $\color{green}{antisybil-V5.pptx} $, our comprehensive 43-page tech report. The ppt contains our thinking, logic, methodology, algorithms and reasoning on a bunch of cases. We propose and develop four approaches, namely (1) **bulk transfers pattern mining** , (2) **bulk donations pattern mining**, (3) **sequential behavior pattern mining** and (4) **asset-transfer graph mining** for slaying sybil. These approaches form a systematic algorithmic LEGO and totally find $\color{green}{16,994}$ High Risk Sybils. Besides, we make our first attempt to detect **grant fraud** and find one case. Let me briefly introduce the main ideas and results of our tech report.
+
+(1) We collected some important datasets valuable to Gitcoin(Page 5), the Ethereum and Polygon transfers related to GR15 contributors from Alchemy and zySync from its api.  From Chainbase and dune, we obtained the token price and some useful smart contract tags. We also labelled some addresses and smart contracts by ourself.
+
+(2)Attackers (or farmers)  invest their time (to manipulate) and money (to donate) to perform Sybil attacks. Definitely they prefer to have a higher ROI (Return on investment). We propose the concept of bulk transfer and bulk donations in page 7. We find some commonly-used tools such as disperse.app, multisend, buldsender (page 14). We design a set of risk indicator and rules to eliminate High-Risk Sybils.(page 19)
+
+(3) We define the sequential behavior pattern mining to make EOA(address) behavior computable so as to facilitate sybil discovery. Cluster algorithm is used to discover group of Sybils behaving in a similar way. Heatmap visualization is very interesting.  (page 29)  
+
+(4) Graphs are very important to detect Sybils. To our knowledge, it is the first time in Web3 to define chain-like and diamond shape Sybil attack. (Page 34, 35). We use Gephi to visualize and explore a lot of connected components. Some gif are provided in this part to show the fund flow of a Syvil attack over time. (page 37, 38).
+
+(5) grant fraud is not a focus in this hackthon. We spend half a day to find one case and present it in page 40.
+
 
 ## The Data Directory
 
@@ -36,6 +47,8 @@ Our data are uploaded to github and aliyun OSS.
 
 ## The Code Directory
 
+We have also uploaded the code to collect data, conduct feature engineering, compute risk score and Sybil clusters, and generate visualizations.
+
 (1) code/loadData: the code for loading all the possible datasets for modelling and mining.     
 
 (2) code/sybilRecognition：the sql and python code for detecting sybils, including the bulkTransfer code, bulkDonation code, behavior code and asset-transfer graph (atg) code. In order to run the program, some necessary data sets are also provided. 
@@ -49,7 +62,8 @@ Our data are uploaded to github and aliyun OSS.
 
 Mainly in doc/overallResults directory, there are some aggregted statistics as to bulk donations, bulk transfers, behavior and atg.  The final overall statistics is also included.
 
+# In the Future
 
-We have also uploaded the code to collect data, conduct feature engineering, compute risk score and Sybil clusters, and generate visualizations.
+(1) Due to time limit, some of the algorithms used in this work is not state-of-art. We can have more deep studies. We keep on building an anti-sybil system.
 
-We keep on building an anti-sybil system. Look forward to collaborating with data scientists from Gitcoin community in Sybil hunting.
+(2)  Look forward to collaborating with data scientists from Gitcoin community in Sybil hunting. And it would be very grateful if we can access Gitcoin exclusive data , e.g. ip, wifi, user behavior on Gitcoin etc.
