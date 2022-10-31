@@ -1,0 +1,45 @@
+
+create table same_action_data as (
+SELECT
+from_addr
+,GROUP_CONCAT(`to_addr`) as to_list
+,GROUP_CONCAT(`fun_name`) as fun_name_list
+,GROUP_CONCAT(`ts_str`) as time_list
+,GROUP_CONCAT(`txn_value_eth`) as eth_v_list
+FROM
+(
+	 select 
+	 from_addr
+	 ,to_addr
+	 ,ts_str
+    ,(case when `input`='0x' then 'transfer' else substr(input,1,8) end) as fun_name
+    ,`txn_value_eth`
+	 from `ethereum_chain`.`ods_eth_txn_v1` WHERE dt >= '2022-08-07'
+	 and dt <= '2022-09-22'
+	 and from_addr in (
+		 select address from `gitcoin_project`.`contributions` group by address
+
+     )
+	 ORDER BY from_addr,ts_str
+) GROUP BY from_addr
+)
+
+
+--create same_action_data table 
+
+
+
+
+
+
+SELECT 
+address
+,arrayCompact(groupArray(msg)) as msg_list
+from 
+(
+    select concat(concat(concat(concat(concat(concat(concat(concat(concat('(Chain:ETH，','Blocknumber:'),`blockNumber`),'，to：'),to),'，Action：'),substr(input,1,8)),'，value：'),value),')') as msg  
+    ,`from` as address
+    FROM `chains_raw_data`.`ethereum_transactions_local` where `from` in (
+   	 	SELECT address FROM `gr15_hackathon`.`contributions_dataset` GROUP BY address
+    ) 
+)GROUP BY address

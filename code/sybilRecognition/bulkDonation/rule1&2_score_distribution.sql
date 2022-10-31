@@ -1,0 +1,1 @@
+select bulkdonate_risklevel, count(1) as cnt from safe_tmp.leo_result_bulk_donate group by bulkdonate_risklevel;
