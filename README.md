@@ -65,4 +65,5 @@ Mainly in doc/overallResults directory, there are some aggregted statistics as t
 # In the Future
 
 (1) Due to time limit, some of the algorithms used in this work is not state-of-art. We can have more deep studies. We keep on building an anti-sybil system.
+
 (2) We have talked with some projects including Gitcoin that are going to do Sybil prevention for their airdrops, campaigns, and donations. But no one has directly answered the question of whether they collect and make use of user privacy data such as IP and WIFI. It is the core value of Crypto to maintain anonymity and resist censorship. So we have always insisted on using publicly available on-chain data to generate Sybil identification and prevention solutions, and we are going deeper on this path.
